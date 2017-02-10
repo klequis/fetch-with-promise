@@ -3,6 +3,42 @@ import * as u from '../lib/ke-utils';
 "use-strict";
 import 'isomorphic-fetch';
 
+/*
+ * So this is the best version - fetch() returns a
+   promise!
+ */
+var ipinfo = fetch('https://ipinfo.io/json')
+console.log(ipinfo);
+ipinfo.then(function(json) {
+  console.log(json);
+});
+
+/*
+ * This works but isn't necessary because fetch is
+   already a promise.
+ */
+ /*
+function doFetch(url) {
+  return new Promise(function(resolve, reject) {
+    let err = false;
+    fetch(url)
+      .then(function(response) {
+        return response.json();
+      })
+      .then(function(json) {
+        resolve(json);
+      });
+    if (err) {
+      regect("Oh no!")
+    }
+  });
+}
+let ipinfo = doFetch('https://ipinfo.io/json');
+console.log(ipinfo);
+ipinfo.then(function(json) {
+  console.log(json);
+});
+*/
 
 /*
  * This is the api calls from my weather app.
@@ -48,3 +84,4 @@ if (userCity) {
         })
     });
 }
+*/
