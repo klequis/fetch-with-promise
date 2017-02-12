@@ -49,13 +49,6 @@ module.exports = {
   },
 
   log(name, value) {
-    /*
-    var str = name;
-    if (value) {
-      str += "=" + value;
-    }
-    console.log("%c [LOG] " + str, "background: #222; color: #ADD8E6");
-    */
     var str = name;
     if (value) {
       str += '=';
