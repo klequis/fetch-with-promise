@@ -9,30 +9,26 @@ const units = 'metric';
 let openweathermapURLRoot = 'http://api.openweathermap.org/data/2.5/weather?'
 
 export default (city) => {
-
   return (function(city){
-    // start if
-      if (city) {
-        u.log('city', city);
-        return fetch(`${openweathermapURLRoot}q=${city},us"&units=${units}&APPID=${APP_ID}`)
-          .then(function(response) {
-            return response.json();
-          });
-      } else {
-        return fetch('https://ipinfo.io/json')
-          .then(function(ipinfo) {
-            return ipinfo.json();
-          })
-          .then(function(json) {
-            return json.city;
-          })
-          .then(function(city) {
-            return fetch(`${openweathermapURLRoot}q=${city},us"&units=${units}&APPID=${APP_ID}`)
-              .then(function(response) {
-                return response.json();
-              })
-          })
-      }
-    // end if
+    if (city) {
+      return fetch(`${openweathermapURLRoot}q=${city},us"&units=${units}&APPID=${APP_ID}`)
+        .then(function(response) {
+          return response.json();
+        });
+    } else {
+      return fetch('https://ipinfo.io/json')
+        .then(function(ipinfo) {
+          return ipinfo.json();
+        })
+        .then(function(json) {
+          return json.city;
+        })
+        .then(function(city) {
+          return fetch(`${openweathermapURLRoot}q=${city},us"&units=${units}&APPID=${APP_ID}`)
+            .then(function(response) {
+              return response.json();
+            })
+        })
+    }
   })(city);
 }

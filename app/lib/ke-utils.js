@@ -49,14 +49,21 @@ module.exports = {
   },
 
   log(name, value) {
+    /*
     var str = name;
     if (value) {
       str += "=" + value;
     }
     console.log("%c [LOG] " + str, "background: #222; color: #ADD8E6");
+    */
+    var str = name;
+    if (value) {
+      str += '=';
+    }
+    console.log("%c[LOG] " + str, "background: #222; color: #ADD8E6", value);
   },
 
   logFunction(name) {
-    console.log("%c [LOG] " + name + "()", "background: #222; color: green");
+    console.log("%c[LOG] " + name + "()", "background: #222; color: green");
   },
 };
