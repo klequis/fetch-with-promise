@@ -5,6 +5,7 @@ import Weather from './weather'
 let ip = '216.58.192.14';
 let noip = '';
 let city = 'danville';
-Weather('danville').then(function(json) {
+
+Weather('').then(function(json) {
   console.log('final', json);
 });
