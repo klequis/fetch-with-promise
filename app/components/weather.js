@@ -9,19 +9,14 @@ const openweathermapURLRoot = 'http://api.openweathermap.org/data/2.5/weather?';
 
 export default (city) => {
   return ((city) => {
-    // start
     if (!city) {
       return getIpInfoCity()
         .then((city) => {
           return getWeather(city);
         })
-        .then((json) => {
-          return json;
-        })
     } else {
       return getWeather(city);
     }
-    // end
   })(city);
 };
 

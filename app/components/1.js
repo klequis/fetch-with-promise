@@ -6,6 +6,6 @@ let ip = '216.58.192.14';
 let noip = '';
 let city = 'danville';
 
-Weather('').then(function(json) {
+Weather('danville').then(function(json) {
   console.log('final', json);
 });
