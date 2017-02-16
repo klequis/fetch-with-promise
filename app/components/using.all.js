@@ -6,7 +6,7 @@ import 'isomorphic-fetch';
 const APP_ID = 'cd605b9a7b8b517b82492ee7bf47a295';
 const units = 'metric';
 const weatherURLRoot = 'http://api.openweathermap.org/data/2.5/weather?';
-const forecastURLRoot = 'http://api.openweathermap.org/data/2.5/forecast?';
+const forecastURLRoot = 'api.openweathermap.org/data/2.5/forecast?';
 
 export default (city) => {
   return ((city) => {
@@ -30,19 +30,21 @@ function getIpInfoCity() {
 }
 
 function getWeather(city) {
-  let weatherURL = `${weatherURLRoot}q=${city},us&units=${units}&APPID=${APP_ID}`;
-  u.log('weatherURL', weatherURL);
-  let forecastURL = `${forecastURLRoot}q=${city},us&units=${units}&APPID=${APP_ID}`;
-  u.log('forecastURL', forecastURL)
-  return Promise.all([
-    fetch(`${weatherURLRoot}q=${city},us&units=${units}&APPID=${APP_ID}`),
-    fetch(`${forecastURLRoot}q=${city},us&units=${units}&APPID=${APP_ID}`)
-
-    // fetch('http://ipinfo.io/json'),
-    // fetch('http://ipinfo.io/json')
+  Promise.all([
+    fetch('http://ipinfo.io/216.58.192.14/json'),
+    fetch(`http://ipinfo.io/json`)
   ])
-  .then(([fetch1, fetch2]) => {
-    return [fetch1.json(), fetch2.json()];
+  .then((responses) => {
+    let r1 = responses[0];
+    let r2 = responses[1];
+
+    // responses.map(response => console.log(response.json()))
+    // return [responses[0].json(), responses[1].json()];
+    return [responses[0], responses[1]];
+  })
+  .then((json) => {
+    // console.log(json);
+    return json.map(j => j.json());
   })
   .catch(reason => {
     console.log('error', reason);
