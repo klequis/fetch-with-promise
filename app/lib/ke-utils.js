@@ -29,16 +29,15 @@ module.exports = {
   },
 
   whead(text, level) {
-    var val = level ? level : 1;
-    var h = document.createElement("h" + val);
-    var t = document.createTextNode(text);
+    let val = level ? level : 1;
+    let h = document.createElement("h" + val);
+    let t = document.createTextNode(text);
     h.appendChild(t);
     document.body.appendChild(h);
   },
 
   code(text) {
-    let str;
-    str = "<code>" + text + "</code>";
+    const str = "<code>" + text + "</code>";
     document.write(str);
   },
 
@@ -48,12 +47,18 @@ module.exports = {
     document.write(str);
   },
 
-  log(name, value) {
-    var str = name;
-    if (value) {
-      str += '=';
+  log(name, value = '', color = 'normal') {
+
+    switch (color) {
+      case 'red':
+        color = 'red';
+        break;
+      default:
+        color = '#ADD8E6';
     }
-    console.log("%c[LOG] " + str, "background: #222; color: #ADD8E6", value);
+    let message = `%c[LOG] ${name}`;
+    let colorString = `background: #222; color: ${color}`;
+    console.log(message, colorString, value);
   },
 
   logFunction(name) {
