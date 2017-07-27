@@ -1,1 +1,1 @@
-import "./components/1.js";
+import "./components/group.js";
